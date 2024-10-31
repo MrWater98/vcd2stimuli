@@ -4,7 +4,7 @@
         {
             "label": "run-Rocket",
             "type": "shell",
-            "command": "bash -c 'python3 src/run_test.py --rtl RocketTile_Small/RocketTile_dut.v --csv /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/RocketTile_Small/output.csv --top RocketTile'",
+            "command": "bash -c 'python3 src/run_test.py --rtl RocketTile_Small/RocketTile_dut.v --csv /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/RocketTile_Small/output_jp.csv --top RocketTile'",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
