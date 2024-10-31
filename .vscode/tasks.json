@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run-Rocket",
+            "type": "shell",
+            "command": "bash -c 'python3 src/run_test.py --rtl RocketTile_Small/RocketTile_dut.v --csv /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/RocketTile_Small/output.csv --top RocketTile'",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PYTHONPATH": "${workspaceFolder}/src",
+                    "SIM": "verilator"
+                },
+            },
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "detail": "Generated task for running make.",
+            "problemMatcher": {
+                "owner": "custom",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*",
+                    "endsPattern": ".*Ready For Connections.*"
+                }
+            }
+        },
+    ]
+}
