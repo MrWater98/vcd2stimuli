@@ -4,6 +4,7 @@ import sys
 import csv
 from collections import defaultdict
 
+
 def read_input_list(input_list_file):
     """读取input列表文件"""
     with open(input_list_file, 'r') as f:

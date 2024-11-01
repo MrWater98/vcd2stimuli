@@ -20,7 +20,6 @@ def main():
         sim_build='sim_build',
         work_dir='run',
         compile_args=['-Wno-fatal'],
-        sim_args=['-sv'],
         gui=False
     )
 

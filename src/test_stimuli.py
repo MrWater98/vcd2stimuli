@@ -53,61 +53,6 @@ class SignalReplay:
         clean_name = self._clean_signal_name(signal_name)
         return self.signals[clean_name].get(time, None)
 
-class SignalMonitor:
-    def __init__(self, dut):
-        self.dut = dut
-        self.value_changes = {}
-        
-    async def monitor_signal(self, signal_name):
-        """监控信号变化"""
-        signal = getattr(self.dut, signal_name)
-        self.value_changes[signal_name] = []
-        
-        while True:
-            await FallingEdge(self.dut.clock)
-            self.value_changes[signal_name].append({
-                'time': cocotb.utils.get_sim_time('ns'),
-                'value': signal.value.binstr
-            })
-
-async def setup_dut(dut, clock_period=10):
-    """设置DUT的时钟和复位"""
-    # 创建时钟
-    clock = Clock(dut.clock, clock_period, units="ns")
-    cocotb.start_soon(clock.start())
-    
-    # 复位
-    dut.reset.value = 1
-    await Timer(20, units="ns")
-    await FallingEdge(dut.clock)
-    dut.reset.value = 0
-    await FallingEdge(dut.clock)
-
-async def drive_signals(dut, replayer):
-    """驱动信号"""
-    prev_time = 0
-    
-    for time in replayer.timestamps:
-        await Timer(time - prev_time, units="ns")
-        
-        for signal_name in replayer.signal_names:
-            if hasattr(dut, signal_name):
-                value = replayer.get_value_at_time(signal_name, time)
-                signal = getattr(dut, signal_name)
-                
-                # 处理不同类型的值
-                if value.startswith('b'):
-                    signal.value = BinaryValue(value[1:])
-                elif value.lower() in ['x', 'z']:
-                    signal.value = value.lower()
-                else:
-                    try:
-                        signal.value = int(value)
-                    except ValueError:
-                        signal.value = value
-        
-        prev_time = time
-
 @cocotb.test()
 async def test_stimuli_replay(dut):
     """主测试函数"""
@@ -117,18 +62,25 @@ async def test_stimuli_replay(dut):
     # 初始化信号重放器
     replayer = SignalReplay(csv_file)
     
-    # 第一个周期 reset 为 1
-    dut.reset <= 1
+    dut.reset = 1
     getattr(dut, 'clock').value = 1
     await Timer(5, units='ns')
     getattr(dut, 'clock').value = 0
     await Timer(5, units='ns')
-    dut.reset <= 0
+    dut.reset = 0
 
     # 遍历时间戳
     for time in replayer.timestamps:
+        # if time == 0 or time == 5:
+        #     getattr(dut, 'reset').value = 1
+        # else:
+        #     getattr(dut, 'reset').value = 0
         getattr(dut, 'clock').value = 1
         await Timer(5, units='ns')
+        if hasattr(dut, 'coverage34'):
+            cocotb.log.info(f"Time {time}ns: core__div__reset = {str(dut.core__div__reset.value)}")
+            cocotb.log.info(f"Time {time}ns: coverage33 = {str(dut.coverage33.value)}")
+            cocotb.log.info(f"Time {time}ns: coverage34 = {str(dut.coverage34.value)}")
         
         # 为每个信号设置对应时间点的值
         for signal_name in replayer.signal_names:
@@ -143,17 +95,19 @@ async def test_stimuli_replay(dut):
                     signal.value = 0
                 else:
                     try:
-                        cocotb.log.info(f"Setting {signal_name} to {value[::-1]}")
-                        signal.value = BinaryValue(value[::-1])
+                        cocotb.log.info(f"Setting {signal_name} to {value}")
+                        signal.value = BinaryValue(value)
                     except ValueError:
                         cocotb.log.info(f"Invalid value '{value}' for signal '{signal_name}'")
 
-        if hasattr(dut, 'coverage34'):
-            cocotb.log.info(f"Time {time}ns: coverage34 = {str(dut.coverage34.value)}")
-        
         # 等待1ns
         getattr(dut, 'clock').value = 0
         await Timer(5, units='ns')
+        if hasattr(dut, 'coverage34'):
+            # print reset
+            cocotb.log.info(f"Time {time}ns: core__div__reset = {str(dut.core__div__reset.value)}")
+            cocotb.log.info(f"Time {time}ns: coverage33 = {str(dut.coverage33.value)}")
+            cocotb.log.info(f"Time {time}ns: coverage34 = {str(dut.coverage34.value)}")
 
     # 在时间戳结束后继续访问两次
     for _ in range(2):

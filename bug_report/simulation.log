@@ -1,0 +1,487 @@
+INFO cocotb: Running command: perl /usr/local/bin/verilator -cc --exe -Mdir /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/sim_build -DCOCOTB_SIM=1 --top-module RocketTile --vpi --public-flat-rw --prefix Vtop -o RocketTile -LDFLAGS -Wl,-rpath,/home/ziyue/.local/lib/python3.8/site-packages/cocotb/libs -L/home/ziyue/.local/lib/python3.8/site-packages/cocotb/libs -lcocotbvpi_verilator -Wno-fatal /home/ziyue/.local/lib/python3.8/site-packages/cocotb/share/lib/verilator/verilator.cpp /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/RocketTile_Small/RocketTile_dut.v
+INFO cocotb: Running command: make -C /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/sim_build -f Vtop.mk
+INFO cocotb: make: Entering directory '/home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/sim_build'
+INFO cocotb: make: Nothing to be done for 'default'.
+INFO cocotb: make: Leaving directory '/home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/sim_build'
+INFO cocotb: Running command: /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/sim_build/RocketTile
+INFO cocotb:      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:76   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+INFO cocotb:      -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+INFO cocotb:      0.00ns INFO     cocotb                             Running on Verilator version 5.013 devel
+INFO cocotb:      0.00ns INFO     cocotb                             Running tests with cocotb v1.8.1 from /home/ziyue/.local/lib/python3.8/site-packages/cocotb
+INFO cocotb:      0.00ns INFO     cocotb                             Seeding Python random module with 1730452085
+INFO cocotb:      0.00ns INFO     cocotb                             Ready For Connections.
+INFO cocotb:      0.00ns INFO     cocotb.regression                  Found test test_stimuli.test_stimuli_replay
+INFO cocotb:      0.00ns INFO     cocotb.regression                  running test_stimuli_replay (1/1)
+INFO cocotb:                                                           主测试函数
+INFO cocotb:      5.00ns INFO     cocotb                             Time 0ns: core__div__reset = 1
+INFO cocotb:      5.00ns INFO     cocotb                             Time 0ns: coverage33 = 0000000100000001100101100110101010101010101010101010101010101010
+INFO cocotb:      5.00ns INFO     cocotb                             Time 0ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010000000
+INFO cocotb:      5.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 00
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 0110
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 00
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111000000000000
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 111
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 0011
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 10
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 0
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 0
+INFO cocotb:      5.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:     10.00ns INFO     cocotb                             Time 0ns: core__div__reset = 0
+INFO cocotb:     10.00ns INFO     cocotb                             Time 0ns: coverage33 = 0000000100000001100101100110101010101010101010101010101010101010
+INFO cocotb:     10.00ns INFO     cocotb                             Time 0ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010000000
+INFO cocotb:     15.00ns INFO     cocotb                             Time 5ns: core__div__reset = 1
+INFO cocotb:     15.00ns INFO     cocotb                             Time 5ns: coverage33 = 0000000100000001100101100110101010101010101010101010101010101010
+INFO cocotb:     15.00ns INFO     cocotb                             Time 5ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010000000
+INFO cocotb:     15.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 00
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 0110
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 00
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111000000000000
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 111
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 0011
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 10
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 0
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 0
+INFO cocotb:     15.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:     20.00ns INFO     cocotb                             Time 5ns: core__div__reset = 0
+INFO cocotb:     20.00ns INFO     cocotb                             Time 5ns: coverage33 = 0000000100000001100101100110101010101010101010101010101010101010
+INFO cocotb:     20.00ns INFO     cocotb                             Time 5ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010000000
+INFO cocotb:     25.00ns INFO     cocotb                             Time 10ns: core__div__reset = 0
+INFO cocotb:     25.00ns INFO     cocotb                             Time 10ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     25.00ns INFO     cocotb                             Time 10ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     25.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 100
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 00
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 1011
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 01
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 0
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 0111111111111100111111111111111111111111111111111111111111111111
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 0
+INFO cocotb:     25.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:     30.00ns INFO     cocotb                             Time 10ns: core__div__reset = 0
+INFO cocotb:     30.00ns INFO     cocotb                             Time 10ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     30.00ns INFO     cocotb                             Time 10ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     35.00ns INFO     cocotb                             Time 15ns: core__div__reset = 0
+INFO cocotb:     35.00ns INFO     cocotb                             Time 15ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     35.00ns INFO     cocotb                             Time 15ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     35.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 100
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 00
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 1011
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 01
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 0
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 0111111111111100111111111111111111111111111111111111111111111111
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 0
+INFO cocotb:     35.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:     40.00ns INFO     cocotb                             Time 15ns: core__div__reset = 0
+INFO cocotb:     40.00ns INFO     cocotb                             Time 15ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     40.00ns INFO     cocotb                             Time 15ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     45.00ns INFO     cocotb                             Time 20ns: core__div__reset = 0
+INFO cocotb:     45.00ns INFO     cocotb                             Time 20ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     45.00ns INFO     cocotb                             Time 20ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     45.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 001
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 0101
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 01
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 0
+INFO cocotb:     45.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:     50.00ns INFO     cocotb                             Time 20ns: core__div__reset = 0
+INFO cocotb:     50.00ns INFO     cocotb                             Time 20ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     50.00ns INFO     cocotb                             Time 20ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     55.00ns INFO     cocotb                             Time 25ns: core__div__reset = 0
+INFO cocotb:     55.00ns INFO     cocotb                             Time 25ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     55.00ns INFO     cocotb                             Time 25ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     55.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 001
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 0101
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 01
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 0
+INFO cocotb:     55.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:     60.00ns INFO     cocotb                             Time 25ns: core__div__reset = 0
+INFO cocotb:     60.00ns INFO     cocotb                             Time 25ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     60.00ns INFO     cocotb                             Time 25ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     65.00ns INFO     cocotb                             Time 30ns: core__div__reset = 0
+INFO cocotb:     65.00ns INFO     cocotb                             Time 30ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     65.00ns INFO     cocotb                             Time 30ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     65.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 011
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 1111
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 01
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 0
+INFO cocotb:     65.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:     70.00ns INFO     cocotb                             Time 30ns: core__div__reset = 0
+INFO cocotb:     70.00ns INFO     cocotb                             Time 30ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     70.00ns INFO     cocotb                             Time 30ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     75.00ns INFO     cocotb                             Time 35ns: core__div__reset = 0
+INFO cocotb:     75.00ns INFO     cocotb                             Time 35ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     75.00ns INFO     cocotb                             Time 35ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     75.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 011
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 1111
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 01
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 0
+INFO cocotb:     75.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:     80.00ns INFO     cocotb                             Time 35ns: core__div__reset = 0
+INFO cocotb:     80.00ns INFO     cocotb                             Time 35ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     80.00ns INFO     cocotb                             Time 35ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     85.00ns INFO     cocotb                             Time 40ns: core__div__reset = 0
+INFO cocotb:     85.00ns INFO     cocotb                             Time 40ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     85.00ns INFO     cocotb                             Time 40ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     85.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 111
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 1111
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 11
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 1
+INFO cocotb:     85.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:     90.00ns INFO     cocotb                             Time 40ns: core__div__reset = 0
+INFO cocotb:     90.00ns INFO     cocotb                             Time 40ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     90.00ns INFO     cocotb                             Time 40ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     95.00ns INFO     cocotb                             Time 45ns: core__div__reset = 0
+INFO cocotb:     95.00ns INFO     cocotb                             Time 45ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:     95.00ns INFO     cocotb                             Time 45ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:     95.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 111
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 1111
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 11
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 1
+INFO cocotb:     95.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:    100.00ns INFO     cocotb                             Time 45ns: core__div__reset = 0
+INFO cocotb:    100.00ns INFO     cocotb                             Time 45ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:    100.00ns INFO     cocotb                             Time 45ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:    105.00ns INFO     cocotb                             Time 50ns: core__div__reset = 0
+INFO cocotb:    105.00ns INFO     cocotb                             Time 50ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:    105.00ns INFO     cocotb                             Time 50ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:    105.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 111
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 1111
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 11
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 1
+INFO cocotb:    105.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:    110.00ns INFO     cocotb                             Time 50ns: core__div__reset = 0
+INFO cocotb:    110.00ns INFO     cocotb                             Time 50ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:    110.00ns INFO     cocotb                             Time 50ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:    115.00ns INFO     cocotb                             Time 55ns: core__div__reset = 0
+INFO cocotb:    115.00ns INFO     cocotb                             Time 55ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:    115.00ns INFO     cocotb                             Time 55ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:    115.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 111
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 1111
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 11
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 1
+INFO cocotb:    115.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:    120.00ns INFO     cocotb                             Time 55ns: core__div__reset = 0
+INFO cocotb:    120.00ns INFO     cocotb                             Time 55ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:    120.00ns INFO     cocotb                             Time 55ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:    125.00ns INFO     cocotb                             Time 60ns: core__div__reset = 0
+INFO cocotb:    125.00ns INFO     cocotb                             Time 60ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:    125.00ns INFO     cocotb                             Time 60ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:    125.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 111
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 1111
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 11
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 1
+INFO cocotb:    125.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:    130.00ns INFO     cocotb                             Time 60ns: core__div__reset = 0
+INFO cocotb:    130.00ns INFO     cocotb                             Time 60ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:    130.00ns INFO     cocotb                             Time 60ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:    135.00ns INFO     cocotb                             Time 65ns: core__div__reset = 0
+INFO cocotb:    135.00ns INFO     cocotb                             Time 65ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:    135.00ns INFO     cocotb                             Time 65ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:    135.00ns INFO     cocotb                             Setting reset to 0
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_a_ready to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_b_valid to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_opcode to 000
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_param to 11
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_size to 1111
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_source to 10
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_address to 11111111111111111111111111000000
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_mask to 00000000
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_data to 0000000000000000000000000000000000000000000000000000000000000000
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_b_bits_corrupt to 0
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_c_ready to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_d_valid to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_opcode to 111
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_param to 11
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_size to 1111
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_source to 11
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_sink to 00
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_denied to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_data to 1111111111111111111111111111111111111111111111111111111111111111
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_d_bits_corrupt to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_buffer_out_e_ready to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_int_local_in_2_0 to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_int_local_in_1_0 to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_int_local_in_1_1 to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_int_local_in_0_0 to 1
+INFO cocotb:    135.00ns INFO     cocotb                             Setting auto_hartid_in to 1
+INFO cocotb:    140.00ns INFO     cocotb                             Time 65ns: core__div__reset = 0
+INFO cocotb:    140.00ns INFO     cocotb                             Time 65ns: coverage33 = 1010101110101011100101100110101010101010101010101010101010101010
+INFO cocotb:    140.00ns INFO     cocotb                             Time 65ns: coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:    160.00ns INFO     cocotb                             Final coverage34 = 0000000000000000000000000000000000000000001000001010101010101010
+INFO cocotb:    160.00ns INFO     cocotb.regression                  test_stimuli_replay passed
+INFO cocotb:    160.00ns INFO     cocotb.regression                  ******************************************************************************************
+INFO cocotb:                                                         ** TEST                              STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+INFO cocotb:                                                         ******************************************************************************************
+INFO cocotb:                                                         ** test_stimuli.test_stimuli_replay   PASS         160.00           6.50         24.63  **
+INFO cocotb:                                                         ******************************************************************************************
+INFO cocotb:                                                         ** TESTS=1 PASS=1 FAIL=0 SKIP=0                    160.00          10.71         14.93  **
+INFO cocotb:                                                         ******************************************************************************************
+INFO cocotb: 
