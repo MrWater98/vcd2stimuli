@@ -117,10 +117,19 @@ async def test_stimuli_replay(dut):
     # 初始化信号重放器
     replayer = SignalReplay(csv_file)
     
+    # 第一个周期 reset 为 1
+    dut.reset <= 1
+    getattr(dut, 'clock').value = 1
+    await Timer(5, units='ns')
+    getattr(dut, 'clock').value = 0
+    await Timer(5, units='ns')
+    dut.reset <= 0
+
     # 遍历时间戳
     for time in replayer.timestamps:
-        getattr(dut,'clock').value = 0
-        await Timer(1, units='ns')
+        getattr(dut, 'clock').value = 1
+        await Timer(5, units='ns')
+        
         # 为每个信号设置对应时间点的值
         for signal_name in replayer.signal_names:
             if hasattr(dut, signal_name) and signal_name != 'clock':
@@ -131,17 +140,28 @@ async def test_stimuli_replay(dut):
                 if value.startswith('b'):
                     signal.value = BinaryValue(value[1:])
                 elif value.lower() in ['x', 'z']:
-                    signal.value = value.lower()
+                    signal.value = 0
                 else:
                     try:
-                        cocotb.log.info(f"Setting {signal_name} to {value}")
-                        signal.value = BinaryValue(value)
+                        cocotb.log.info(f"Setting {signal_name} to {value[::-1]}")
+                        signal.value = BinaryValue(value[::-1])
                     except ValueError:
                         cocotb.log.info(f"Invalid value '{value}' for signal '{signal_name}'")
 
-        if hasattr(dut, 'coverage2'):
-            cocotb.log.info(f"Time {time}ns: coverage2[188] = {dut.coverage2.value[188]}")
+        if hasattr(dut, 'coverage34'):
+            cocotb.log.info(f"Time {time}ns: coverage34 = {str(dut.coverage34.value)}")
         
         # 等待1ns
-        getattr(dut,'clock').value = 1
-        await Timer(1, units='ns')
+        getattr(dut, 'clock').value = 0
+        await Timer(5, units='ns')
+
+    # 在时间戳结束后继续访问两次
+    for _ in range(2):
+        getattr(dut, 'clock').value = 1
+        await Timer(5, units='ns')
+        getattr(dut, 'clock').value = 0
+        await Timer(5, units='ns')
+
+    # 打印最终的 coverage34
+    if hasattr(dut, 'coverage34'):
+        cocotb.log.info(f"Final coverage34 = {str(dut.coverage34.value)}")
