@@ -70,7 +70,7 @@ async def test_stimuli_replay(dut):
     dut.reset = 0
 
     # 遍历时间戳
-    for time in replayer.timestamps:
+    for time in replayer.timestamps[2:]:
         # if time == 0 or time == 5:
         #     getattr(dut, 'reset').value = 1
         # else:

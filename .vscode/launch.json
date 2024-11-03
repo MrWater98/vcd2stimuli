@@ -15,7 +15,7 @@
                 "--inputs",
                 "${workspaceFolder}/RocketTile_Small/input.list",
                 "--output",
-                "${workspaceFolder}/RocketTile_Small/output_jp.csv",
+                "${workspaceFolder}/RocketTile_Small/all_jp.csv",
             ],
             "console": "integratedTerminal",
             "justMyCode": true,

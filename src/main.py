@@ -10,7 +10,7 @@ def read_input_list(input_list_file):
     with open(input_list_file, 'r') as f:
         return [line.strip() for line in f if line.strip()]
 
-def parse_vcd_signals(vcd_file, signal_list):
+def parse_vcd_signals(vcd_file, signal_list, is_all_signals=False):
     """解析VCD文件中指定信号的值"""
     vcd_data = Verilog_VCD.parse_vcd(vcd_file)
     
@@ -25,7 +25,7 @@ def parse_vcd_signals(vcd_file, signal_list):
     for code, data in vcd_data.items():
         for net in data['nets']:
             signal_name = f"{net['name']}"
-            if signal_name in signal_list:
+            if signal_name in signal_list or is_all_signals:
                 # 获取信号的时间-值对
                 if 'tv' in data:
                     results[signal_name] = data['tv']
@@ -62,17 +62,23 @@ def organize_by_cycle(results):
 
 def export_to_csv(cycle_data, sorted_times, signal_list, output_file):
     """导出数据到CSV文件"""
+    # 获取所有信号名称
+    all_signals = set()
+    for time_data in cycle_data.values():
+        all_signals.update(time_data.keys())
+    all_signals = sorted(all_signals)  # 排序以保持一致的列顺序
+    
     with open(output_file, 'w', newline='') as f:
         writer = csv.writer(f)
         
         # 写入表头
-        header = ['Time'] + signal_list
+        header = ['Time'] + all_signals
         writer.writerow(header)
         
         # 写入每个时间点的数据
         for time in sorted_times:
             row = [time]
-            for signal in signal_list:
+            for signal in all_signals:
                 row.append(cycle_data[time].get(signal, 'x'))
             writer.writerow(row)
 
@@ -90,7 +96,7 @@ def main():
         input_signals = read_input_list(args.inputs)
         
         # 解析VCD文件
-        results, timescale, endtime = parse_vcd_signals(args.vcd, input_signals)
+        results, timescale, endtime = parse_vcd_signals(args.vcd, input_signals, is_all_signals=True)
         
         # 按周期组织数据
         cycle_data, sorted_times = organize_by_cycle(results)
