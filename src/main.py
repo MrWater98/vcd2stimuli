@@ -96,7 +96,7 @@ def main():
         input_signals = read_input_list(args.inputs)
         
         # 解析VCD文件
-        results, timescale, endtime = parse_vcd_signals(args.vcd, input_signals, is_all_signals=True)
+        results, timescale, endtime = parse_vcd_signals(args.vcd, input_signals, is_all_signals=False)
         
         # 按周期组织数据
         cycle_data, sorted_times = organize_by_cycle(results)
