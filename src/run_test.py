@@ -25,7 +25,7 @@ def main():
         module='test_stimuli',
         sim_build='sim_build',
         work_dir='run',
-        compile_args=['-Wno-fatal','-no-timing','-O0'],
+        compile_args=['-Wno-fatal'],
         gui=False
     )
 
