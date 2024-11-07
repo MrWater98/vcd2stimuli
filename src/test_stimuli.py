@@ -7,9 +7,9 @@ from cocotb.binary import BinaryValue
 
 import debugpy
 
-# debugpy.listen(("0.0.0.0", 4000))
-# cocotb.log.info("Ready For Connections.")
-# debugpy.wait_for_client()
+debugpy.listen(("0.0.0.0", 4000))
+cocotb.log.info("Ready For Connections.")
+debugpy.wait_for_client()
 
 def clean_signal_name_and_get_index(signal_name):
     """清理信号名称，去除位宽信息，并且获得下标并返回"""
@@ -121,11 +121,14 @@ async def test_stimuli_replay(dut):
 
     # 初始化信号重放器
     replayer = SignalReplay(csv_file)
-    comparator = SignalComparator(cmpcsv_file)
+    if cmpcsv_file!=None:
+        comparator = SignalComparator(cmpcsv_file)
+    else:
+        comparator = None
 
 
     # 遍历时间戳
-    for time in replayer.timestamps[0:4]:
+    for time in replayer.timestamps:
         cocotb.log.info(f"[INFO] Time {time}ns: ")
         getattr(dut, 'clock').value = 0
         await Timer(1, units='ns')
@@ -143,72 +146,70 @@ async def test_stimuli_replay(dut):
                 signal.value = BinaryValue(value)
 
         
-        cocotb.log.info('[CHECKING REGLIST]')
-        dict_mismtach_regs = {}
-        dict_match_regs = {}
-
-        # 检查每个寄存器的值
-        for _signal_name in comparator.signal_names:
-            signal_name, index = clean_signal_name_and_get_index(_signal_name)
-            if hasattr(dut, signal_name) and signal_name != 'clock' and signal_name in reglist:
-                if index != -1:
-                    expected_value = comparator.get_value_at_time(signal_name + f'[{str(index)}]', time)
-                else:
-                    expected_value = comparator.get_value_at_time(signal_name, time)
-                signal = getattr(dut, signal_name)
-                if type(signal.value) == list and index != -1:
-                    if signal.value[index] != BinaryValue(expected_value):
-                        dict_mismtach_regs[f"{signal_name}[{index}]"] = (expected_value, signal.value[index])
+        if comparator:
+            cocotb.log.info('[CHECKING REGLIST]')
+            dict_mismtach_regs = {}
+            dict_match_regs = {}
+            # 检查每个寄存器的值
+            for _signal_name in comparator.signal_names:
+                signal_name, index = clean_signal_name_and_get_index(_signal_name)
+                if hasattr(dut, signal_name) and signal_name != 'clock' and signal_name in reglist:
+                    if index != -1:
+                        expected_value = comparator.get_value_at_time(signal_name + f'[{str(index)}]', time)
                     else:
-                        dict_match_regs[f"{signal_name}[{index}]"] = (expected_value, signal.value[index])
-                elif signal.value != BinaryValue(expected_value):
-                    dict_mismtach_regs[signal_name] = (expected_value, signal.value)
+                        expected_value = comparator.get_value_at_time(signal_name, time)
+                    signal = getattr(dut, signal_name)
+                    if type(signal.value) == list and index != -1:
+                        if signal.value[index] != BinaryValue(expected_value):
+                            dict_mismtach_regs[f"{signal_name}[{index}]"] = (expected_value, signal.value[index])
+                        else:
+                            dict_match_regs[f"{signal_name}[{index}]"] = (expected_value, signal.value[index])
+                    elif signal.value != BinaryValue(expected_value):
+                        dict_mismtach_regs[signal_name] = (expected_value, signal.value)
 
         
-        for _signal_name in comparator.signal_names:
-            signal_name, index = clean_signal_name_and_get_index(_signal_name)
-            if hasattr(dut, signal_name) and signal_name != 'clock' and signal_name in reglist:
-                if index != -1:
-                    expected_value = comparator.get_value_at_time(signal_name + f'[{str(index)}]', time+5) # reg update after posedge
-                else:
-                    expected_value = comparator.get_value_at_time(signal_name, time+5) # reg update after posedge
-                signal = getattr(dut, signal_name)
-                if type(signal.value) == list and index != -1: # checking a list
-                    cocotb.log.info(f"[INFO] Signal {signal_name} is a list, We checking the value accroding to the index")
-                    if signal.value[index] != BinaryValue(expected_value) and signal_name in dict_mismtach_regs:
-                        cocotb.log.info(f"[ERROR] Signal {signal_name}[{index}] mismatch before the time {time}ns: expected {dict_mismtach_regs[f'{signal_name}[{index}]'][0]}, got {dict_mismtach_regs[f'{signal_name}[{index}]'][1]}")
-                        cocotb.log.info(f"[ERROR] Signal {signal_name}[{index}] mismatch after time {time}ns: expected {expected_value}, got {signal.value[index]}")
+            for _signal_name in comparator.signal_names:
+                signal_name, index = clean_signal_name_and_get_index(_signal_name)
+                if hasattr(dut, signal_name) and signal_name != 'clock' and signal_name in reglist:
+                    if index != -1:
+                        expected_value = comparator.get_value_at_time(signal_name + f'[{str(index)}]', time+5) # reg update after posedge
                     else:
-                        cocotb.log.info(f"[INFO] Signal {signal_name}[{index}] match before the time {time}ns")
-                        cocotb.log.info(f"[INFO] Signal {signal_name}[{index}] match after time {time}ns")
-                elif signal.value != BinaryValue(expected_value) and signal_name in dict_mismtach_regs:
-                    cocotb.log.info(f"[ERROR] Signal {signal_name} mismatch before the time {time}ns: expected {dict_mismtach_regs[signal_name][0]}, got {dict_mismtach_regs[signal_name][1]}")
-                    cocotb.log.info(f"[ERROR] Signal {signal_name} mismatch after time {time}ns: expected {expected_value}, got {signal.value}")
-                elif signal.value == BinaryValue(expected_value) and signal_name in dict_match_regs:
-                    cocotb.log.info(f"[INFO] Signal {signal_name} match before and after posedge of timer at time {time}ns: expected {expected_value}, got {signal.value}")
-                elif signal.value != BinaryValue(expected_value) and signal_name in dict_match_regs:
-                    cocotb.log.info(f'[WARNING] Mismatch may happen, please check the signal {signal_name} carefully')
-                    cocotb.log.info(f'[INFO] Signal {signal_name} before posedge of timer at time {time}ns: expected {dict_match_regs[signal_name][0]}, got {dict_match_regs[signal_name][1]}')
-                    cocotb.log.info(f"[INFO] Signal {signal_name} after posedge of timer at time {time}ns: expected {expected_value}, got {signal.value}")
-                elif signal.value == BinaryValue(expected_value) and signal_name in dict_mismtach_regs:
-                    cocotb.log.info(f"[Warning] mismatch may happen, please check the signal {signal_name} carefully")
-                    cocotb.log.info(f"[INFO] Signal {signal_name} mismatch before the time {time}ns: expected {dict_mismtach_regs[signal_name][0]}, got {dict_mismtach_regs[signal_name][1]}")
-                    cocotb.log.info(f"[INFO] Signal {signal_name} match after time {time}ns: expected {expected_value}, got {signal.value}")
+                        expected_value = comparator.get_value_at_time(signal_name, time+5) # reg update after posedge
+                    signal = getattr(dut, signal_name)
+                    if type(signal.value) == list and index != -1: # checking a list
+                        cocotb.log.info(f"[INFO] Signal {signal_name} is a list, We checking the value accroding to the index")
+                        if signal.value[index] != BinaryValue(expected_value) and signal_name in dict_mismtach_regs:
+                            cocotb.log.info(f"[ERROR] Signal {signal_name}[{index}] mismatch before the time {time}ns: expected {dict_mismtach_regs[f'{signal_name}[{index}]'][0]}, got {dict_mismtach_regs[f'{signal_name}[{index}]'][1]}")
+                            cocotb.log.info(f"[ERROR] Signal {signal_name}[{index}] mismatch after time {time}ns: expected {expected_value}, got {signal.value[index]}")
+                        else:
+                            cocotb.log.info(f"[INFO] Signal {signal_name}[{index}] match before the time {time}ns")
+                            cocotb.log.info(f"[INFO] Signal {signal_name}[{index}] match after time {time}ns")
+                    elif signal.value != BinaryValue(expected_value) and signal_name in dict_mismtach_regs:
+                        cocotb.log.info(f"[ERROR] Signal {signal_name} mismatch before the time {time}ns: expected {dict_mismtach_regs[signal_name][0]}, got {dict_mismtach_regs[signal_name][1]}")
+                        cocotb.log.info(f"[ERROR] Signal {signal_name} mismatch after time {time}ns: expected {expected_value}, got {signal.value}")
+                    elif signal.value == BinaryValue(expected_value) and signal_name in dict_match_regs:
+                        cocotb.log.info(f"[INFO] Signal {signal_name} match before and after posedge of timer at time {time}ns: expected {expected_value}, got {signal.value}")
+                    elif signal.value != BinaryValue(expected_value) and signal_name in dict_match_regs:
+                        cocotb.log.info(f'[WARNING] Mismatch may happen, please check the signal {signal_name} carefully')
+                        cocotb.log.info(f'[INFO] Signal {signal_name} before posedge of timer at time {time}ns: expected {dict_match_regs[signal_name][0]}, got {dict_match_regs[signal_name][1]}')
+                        cocotb.log.info(f"[INFO] Signal {signal_name} after posedge of timer at time {time}ns: expected {expected_value}, got {signal.value}")
+                    elif signal.value == BinaryValue(expected_value) and signal_name in dict_mismtach_regs:
+                        cocotb.log.info(f"[Warning] mismatch may happen, please check the signal {signal_name} carefully")
+                        cocotb.log.info(f"[INFO] Signal {signal_name} mismatch before the time {time}ns: expected {dict_mismtach_regs[signal_name][0]}, got {dict_mismtach_regs[signal_name][1]}")
+                        cocotb.log.info(f"[INFO] Signal {signal_name} match after time {time}ns: expected {expected_value}, got {signal.value}")
 
-
-
-        cocotb.log.info('[CHECKING WIRE & Port]')
-        dict_mismtach_wires = {}
-        dict_match_wires = {}
-        for signal_name in comparator.signal_names:
-            if hasattr(dut, signal_name) and signal_name != 'clock' and signal_name not in reglist:
-                expected_value = comparator.get_value_at_time(signal_name, time)
-                signal = getattr(dut, signal_name)
-                if signal.value != BinaryValue(expected_value):
-                    dict_mismtach_wires[signal_name] = (expected_value, signal.value)
-                    # cocotb.log.info(f"Signal {signal_name} mismatch at time {time}ns: expected {expected_value}, got {signal.value}")
-                else:
-                    dict_match_wires[signal_name] = (expected_value, signal.value)
+            cocotb.log.info('[CHECKING WIRE & Port]')
+            dict_mismtach_wires = {}
+            dict_match_wires = {}
+            for signal_name in comparator.signal_names:
+                if hasattr(dut, signal_name) and signal_name != 'clock' and signal_name not in reglist:
+                    expected_value = comparator.get_value_at_time(signal_name, time)
+                    signal = getattr(dut, signal_name)
+                    if signal.value != BinaryValue(expected_value):
+                        dict_mismtach_wires[signal_name] = (expected_value, signal.value)
+                        # cocotb.log.info(f"Signal {signal_name} mismatch at time {time}ns: expected {expected_value}, got {signal.value}")
+                    else:
+                        dict_match_wires[signal_name] = (expected_value, signal.value)
 
             
 
@@ -216,39 +217,40 @@ async def test_stimuli_replay(dut):
         getattr(dut, 'clock').value = 1
         await Timer(1, units='ns')
         
-        for signal_name in comparator.signal_names:
-            if hasattr(dut, signal_name) and signal_name != 'clock' and signal_name not in reglist:
-                expected_value = comparator.get_value_at_time(signal_name, time)
-                signal = getattr(dut, signal_name)
-                if signal.value != BinaryValue(expected_value) and signal_name in dict_mismtach_wires:
-                    if type(dict_mismtach_wires[signal_name][0]) != list and type(dict_mismtach_wires[signal_name][1])!=list and type(signal.value) != list:
-                        cocotb.log.info(f"[ERROR] Signal {signal_name} mismtach before the time {time}ns: expected {dict_mismtach_wires[signal_name][0]}, got {dict_mismtach_wires[signal_name][1]}")
-                        cocotb.log.info(f"[ERROR] Signal {signal_name} mismatch after time {time}ns: expected {expected_value}, got {signal.value}")
-                    else:
-                        cocotb.log.info(f"[INFO] Signal {signal_name} mismtach before the time {time}ns")
-                        cocotb.log.info(f"[INFO] Signal {signal_name} mismatch after time {time}ns")
-                elif signal.value == BinaryValue(expected_value) and signal_name in dict_match_wires:
-                    cocotb.log.info(f'[INFO] Signal {signal_name} match before and after posedge of timer at time {time}ns: expected {dict_match_wires[signal_name][0]}, got {dict_match_wires[signal_name][1]}')
-                elif signal.value != BinaryValue(expected_value) and signal_name in dict_match_wires:
-                    cocotb.log.info(f'[WARNING] Mismatch may happen, please check the signal {signal_name} carefully')
-                    cocotb.log.info(f'[INFO] Signal {signal_name} before posedge of timer at time {time}ns: expected {dict_match_wires[signal_name][0]}, got {dict_match_wires[signal_name][1]}')
-                    cocotb.log.info(f"[INFO] Signal {signal_name} after posedge of timer at time {time}ns: expected {expected_value}, got {signal.value}")
-                elif signal.value == BinaryValue(expected_value) and signal_name in dict_mismtach_wires:
-                    cocotb.log.info(f"[Warning] mismatch may happen, please check the signal {signal_name} carefully")
-                    cocotb.log.info(f"[INFO] Signal {signal_name} mismatch before the time {time}ns: expected {dict_mismtach_wires[signal_name][0]}, got {dict_mismtach_wires[signal_name][1]}")
-                    cocotb.log.info(f"[INFO] Signal {signal_name} match after time {time}ns: expected {expected_value}, got {signal.value}")
-                # elif signal.value != BinaryValue(expected_value) and signal_name in dict_match_wires:
-                #     cocotb.log.info(f"[INFO] Signal {signal_name} mismatch after posedge of timer at time {time}ns: expected {expected_value}, got {signal.value}")
-                #     cocotb.log.info(f"[INFO] But match before posedge of timer at time {time}ns: expected {dict_match_wires[signal_name][0]}, got {dict_match_wires[signal_name][1]}")
+        if comparator:
+            for signal_name in comparator.signal_names:
+                if hasattr(dut, signal_name) and signal_name != 'clock' and signal_name not in reglist:
+                    expected_value = comparator.get_value_at_time(signal_name, time)
+                    signal = getattr(dut, signal_name)
+                    if signal.value != BinaryValue(expected_value) and signal_name in dict_mismtach_wires:
+                        if type(dict_mismtach_wires[signal_name][0]) != list and type(dict_mismtach_wires[signal_name][1])!=list and type(signal.value) != list:
+                            cocotb.log.info(f"[ERROR] Signal {signal_name} mismtach before the time {time}ns: expected {dict_mismtach_wires[signal_name][0]}, got {dict_mismtach_wires[signal_name][1]}")
+                            cocotb.log.info(f"[ERROR] Signal {signal_name} mismatch after time {time}ns: expected {expected_value}, got {signal.value}")
+                        else:
+                            cocotb.log.info(f"[INFO] Signal {signal_name} mismtach before the time {time}ns")
+                            cocotb.log.info(f"[INFO] Signal {signal_name} mismatch after time {time}ns")
+                    elif signal.value == BinaryValue(expected_value) and signal_name in dict_match_wires:
+                        cocotb.log.info(f'[INFO] Signal {signal_name} match before and after posedge of timer at time {time}ns: expected {dict_match_wires[signal_name][0]}, got {dict_match_wires[signal_name][1]}')
+                    elif signal.value != BinaryValue(expected_value) and signal_name in dict_match_wires:
+                        cocotb.log.info(f'[WARNING] Mismatch may happen, please check the signal {signal_name} carefully')
+                        cocotb.log.info(f'[INFO] Signal {signal_name} before posedge of timer at time {time}ns: expected {dict_match_wires[signal_name][0]}, got {dict_match_wires[signal_name][1]}')
+                        cocotb.log.info(f"[INFO] Signal {signal_name} after posedge of timer at time {time}ns: expected {expected_value}, got {signal.value}")
+                    elif signal.value == BinaryValue(expected_value) and signal_name in dict_mismtach_wires:
+                        cocotb.log.info(f"[Warning] mismatch may happen, please check the signal {signal_name} carefully")
+                        cocotb.log.info(f"[INFO] Signal {signal_name} mismatch before the time {time}ns: expected {dict_mismtach_wires[signal_name][0]}, got {dict_mismtach_wires[signal_name][1]}")
+                        cocotb.log.info(f"[INFO] Signal {signal_name} match after time {time}ns: expected {expected_value}, got {signal.value}")
+                    # elif signal.value != BinaryValue(expected_value) and signal_name in dict_match_wires:
+                    #     cocotb.log.info(f"[INFO] Signal {signal_name} mismatch after posedge of timer at time {time}ns: expected {expected_value}, got {signal.value}")
+                    #     cocotb.log.info(f"[INFO] But match before posedge of timer at time {time}ns: expected {dict_match_wires[signal_name][0]}, got {dict_match_wires[signal_name][1]}")
         
         
 
     # 在时间戳结束后继续访问两次
-    for _ in range(2):
+    for _ in range(5):
         getattr(dut, 'clock').value = 0
-        await Timer(5, units='ns')
+        await Timer(1, units='ns')
         getattr(dut, 'clock').value = 1
-        await Timer(5, units='ns')
+        await Timer(1, units='ns')
 
     # 打印最终的 coverage34
     if hasattr(dut, 'coverage34'):

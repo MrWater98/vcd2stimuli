@@ -11,11 +11,11 @@
             "program": "${workspaceFolder}/src/main.py",
             "args": [
                 "--vcd",
-                "${workspaceFolder}/RocketTile_Small/1561_jp.vcd",
+                "${workspaceFolder}/RocketTile_Small/cex.vcd",
                 "--inputs",
                 "${workspaceFolder}/RocketTile_Small/input.list",
                 "--output",
-                "${workspaceFolder}/RocketTile_Small/output_jp.csv",
+                "${workspaceFolder}/RocketTile_Small/output_pono.csv",
             ],
             "console": "integratedTerminal",
             "justMyCode": true,
@@ -25,7 +25,7 @@
             "cwd": "${workspaceFolder}"
         },
         {
-            "name": "Python: debug Rocket",
+            "name": "Python: debug Rocket compare",
             "type": "debugpy",
             "request": "attach",
             "connect": {
@@ -33,7 +33,18 @@
                 "port": 4000              // ptvsd 监听的端口
             },
             "justMyCode": false,
-            "preLaunchTask": "run-Rocket",
+            "preLaunchTask": "run-Rocket-compare",
+        },
+        {
+            "name": "Python: debug Rocket no compare",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "0.0.0.0",  // 远程机器的 IP 地址
+                "port": 4000              // ptvsd 监听的端口
+            },
+            "justMyCode": false,
+            "preLaunchTask": "run-Rocket-no-compare",
         },
     ]
 }
