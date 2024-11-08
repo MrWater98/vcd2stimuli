@@ -4,9 +4,9 @@ prep -top RocketTile
 chformal -assume -early
 memory -nomap
 hierarchy -check
-# dffunmap
+dffunmap
 setundef -zero
 zinit -all
-#sim -clock clock -reset reset -zinit -rstlen 1 -n 1 -w RocketTile 
-
+# sim -clock clock -reset reset -zinit -rstlen 1 -n 1 -w RocketTile 
+# clk2fflogic
 write_btor RocketTile_dut.btor

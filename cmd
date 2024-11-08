@@ -1,2 +1,2 @@
 yosys RocketTile.ys  > btor.log 2>&1
-../../ponocca/build/pono --bound 500 --promote-inputvars -e bmc -p 0 --vcd cex.vcd RocketTile_dut.btor
+../../ponocca/build/pono --promote-inputvars --bound 500 -p 0 -e bmc --vcd cex.vcd -v 3 RocketTile_dut.btor 

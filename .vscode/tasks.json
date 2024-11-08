@@ -4,7 +4,7 @@
         {
             "label": "run-Rocket-compare",
             "type": "shell",
-            "command": "bash -c 'python3 src/run_test.py --rtl RocketTile_Small/RocketTile_dut.v --csv /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/RocketTile_Small/output_jp.csv --cmpcsv /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/RocketTile_Small/all_jp.csv --reglist /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/RocketTile_Small/reg.list --top RocketTile'",
+            "command": "bash -c 'python3 src/run_test.py --rtl RocketTile_Small/RocketTile_dut.v --csv ${workspaceFolder}/RocketTile_Small/output_jp.csv --cmpcsv ${workspaceFolder}/RocketTile_Small/all_jp.csv --reglist ${workspaceFolder}/RocketTile_Small/reg.list --top RocketTile'",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {
@@ -39,7 +39,7 @@
         {
             "label": "run-Rocket-no-compare",
             "type": "shell",
-            "command": "bash -c 'python3 src/run_test.py --rtl RocketTile_Small/RocketTile_dut.v --csv /home/ziyue/researchlib/Micro_Eletronic/vcd2stimuli/RocketTile_Small/output_pono.csv --top RocketTile'",
+            "command": "bash -c 'python3 src/run_test.py --rtl RocketTile_Small/RocketTile_dut.v --csv ${workspaceFolder}/RocketTile_Small/output_jp.csv --top RocketTile'",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "env": {

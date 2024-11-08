@@ -11,11 +11,11 @@
             "program": "${workspaceFolder}/src/main.py",
             "args": [
                 "--vcd",
-                "${workspaceFolder}/RocketTile_Small/cex.vcd",
+                "${workspaceFolder}/RocketTile_Small/jp_vcd/34[14].vcd",
                 "--inputs",
                 "${workspaceFolder}/RocketTile_Small/input.list",
                 "--output",
-                "${workspaceFolder}/RocketTile_Small/output_pono.csv",
+                "${workspaceFolder}/RocketTile_Small/output_jp.csv",
             ],
             "console": "integratedTerminal",
             "justMyCode": true,
