@@ -1,3 +1,7 @@
 sim_build/
 *.pyc
 *.log
+jaspergold
+jgproject
+traces
+cmd

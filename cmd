@@ -1,2 +1,1 @@
-yosys RocketTile.ys  > btor.log 2>&1
-../../ponocca/build/pono --promote-inputvars --bound 500 -p 0 -e bmc --vcd cex.vcd -v 3 RocketTile_dut.btor 
+python src/main.py --vcd /hpc/home/connect.zzheng989/researchlib/cov4rtl/bench/RocketTile_Tiny_Opt/jasper/customize_branch/traces/1.RocketTile._assert_1.Bm.12.vcd --inputs /hpc/home/connect.zzheng989/researchlib/vcd2stimuli/bench/RocketTile_Tiny_Opt/input.list --output /hpc/home/connect.zzheng989/researchlib/vcd2stimuli/bench/RocketTile_Tiny_Opt/csv/coverage1-514.csv

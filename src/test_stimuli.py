@@ -7,9 +7,11 @@ from cocotb.binary import BinaryValue
 
 import debugpy
 
-debugpy.listen(("0.0.0.0", 4000))
-cocotb.log.info("Ready For Connections.")
-debugpy.wait_for_client()
+# debugpy.listen(("0.0.0.0", 4000))
+# cocotb.log.info("Ready For Connections.")
+# debugpy.wait_for_client()
+
+max_vpi_bits = 1000
 
 def clean_signal_name_and_get_index(signal_name):
     """清理信号名称，去除位宽信息，并且获得下标并返回"""
@@ -109,6 +111,10 @@ async def test_stimuli_replay(dut):
     """主测试函数"""
     # 获取CSV文件路径（从环境变量或使用默认值）
     csv_file = os.environ.get('CSV_FILE', 'input.csv')
+    test_id = os.environ.get('TEST_ID', '0-0')
+    clock_name = os.environ.get('CLOCK', 'clock')
+    id1 = test_id.split('-')[0]
+    id2 = test_id.split('-')[1]
     cmpcsv_file = os.environ.get('CMPCSV_FILE', None)
     reglist_file = os.environ.get('REGLIST_FILE', None)
     # get reglist from reglist_file path
@@ -126,18 +132,17 @@ async def test_stimuli_replay(dut):
     else:
         comparator = None
 
-
     # 遍历时间戳
     for time in replayer.timestamps:
         cocotb.log.info(f"[INFO] Time {time}ns: ")
-        getattr(dut, 'clock').value = 0
+        getattr(dut, clock_name).value = 0
         await Timer(1, units='ns')
-        if hasattr(dut, 'coverage34'):
-            cocotb.log.info(f"Time {time}ns: coverage34 = {str(dut.coverage34.value)}")
+        # if hasattr(dut, f'coverage{id1}[{id2}]'):
+        #     cocotb.log.info(f"Final coverage = {str(dut.getattr(f'coverage{id1}').value[id2])}")
         
         # 为每个信号设置对应时间点的值
         for signal_name in replayer.signal_names:
-            if hasattr(dut, signal_name) and signal_name != 'clock':
+            if hasattr(dut, signal_name) and signal_name != clock_name:
                 value = replayer.get_value_at_time(signal_name, time)
                 signal = getattr(dut, signal_name)
                 
@@ -214,7 +219,7 @@ async def test_stimuli_replay(dut):
             
 
         # 等待1ns
-        getattr(dut, 'clock').value = 1
+        getattr(dut, clock_name).value = 1
         await Timer(1, units='ns')
         
         if comparator:
@@ -239,19 +244,17 @@ async def test_stimuli_replay(dut):
                         cocotb.log.info(f"[Warning] mismatch may happen, please check the signal {signal_name} carefully")
                         cocotb.log.info(f"[INFO] Signal {signal_name} mismatch before the time {time}ns: expected {dict_mismtach_wires[signal_name][0]}, got {dict_mismtach_wires[signal_name][1]}")
                         cocotb.log.info(f"[INFO] Signal {signal_name} match after time {time}ns: expected {expected_value}, got {signal.value}")
-                    # elif signal.value != BinaryValue(expected_value) and signal_name in dict_match_wires:
-                    #     cocotb.log.info(f"[INFO] Signal {signal_name} mismatch after posedge of timer at time {time}ns: expected {expected_value}, got {signal.value}")
-                    #     cocotb.log.info(f"[INFO] But match before posedge of timer at time {time}ns: expected {dict_match_wires[signal_name][0]}, got {dict_match_wires[signal_name][1]}")
         
         
 
     # 在时间戳结束后继续访问两次
-    for _ in range(5):
+    for _ in range(2):
         getattr(dut, 'clock').value = 0
         await Timer(1, units='ns')
         getattr(dut, 'clock').value = 1
         await Timer(1, units='ns')
 
-    # 打印最终的 coverage34
-    if hasattr(dut, 'coverage34'):
-        cocotb.log.info(f"Final coverage34 = {str(dut.coverage34.value)}")
+    # 打印最终的 
+    if hasattr(dut, f'coverage{id1}'):
+        cocotb.log.info(f"[RESULT] The cover result of coverage{id1}-{id2} is: {str(getattr(dut,f'coverage{id1}').value[1000-int(id2)])}")
+        # cocotb.log.info(f"[RESULT] The cover result of coverage{id1}-{id2} is: {str(getattr(dut,f'coverage{id1}').value)}")

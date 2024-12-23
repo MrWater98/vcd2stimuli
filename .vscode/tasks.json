@@ -71,5 +71,75 @@
                 }
             }
         },
+        {
+            "label": "run-Rocket-Tiny-Test",
+            "type": "shell",
+            "command": "bash -c 'python3 src/run_test.py --rtl ${workspaceFolder}/bench/RocketTile_Tiny_Opt/RocketTile_dut.v --csv ${workspaceFolder}/bench/RocketTile_Tiny_Opt/csv/coverage1-514.csv --top RocketTile --clock clock --id 1-514'",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PYTHONPATH": "${workspaceFolder}/src",
+                    "SIM": "verilator"
+                },
+            },
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "detail": "Generated task for running make.",
+            "problemMatcher": {
+                "owner": "custom",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*",
+                    "endsPattern": ".*Ready For Connections.*"
+                }
+            }
+        },
+        {
+            "label": "run-Rocket-Tiny-Compare",
+            "type": "shell",
+            "command": "bash -c 'python src/run_test.py --rtl /hpc/home/connect.zzheng989/researchlib/vcd2stimuli/bench/RocketTile_Tiny_Opt/RocketTile_dut.v --clock clock --top RocketTile --csv /hpc/home/connect.zzheng989/researchlib/vcd2stimuli/bench/RocketTile_Tiny_Opt/csv/Input_1-514.csv --id 1-514 --cmpcsv /hpc/home/connect.zzheng989/researchlib/vcd2stimuli/bench/RocketTile_Tiny_Opt/csv/State_1-514.csv --reglist /hpc/home/connect.zzheng989/researchlib/vcd2stimuli/bench/RocketTile_Tiny_Opt/reg_nosufix.list'",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PYTHONPATH": "${workspaceFolder}/src",
+                    "SIM": "verilator"
+                },
+            },
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "detail": "Generated task for running make.",
+            "problemMatcher": {
+                "owner": "custom",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".*",
+                    "endsPattern": ".*Ready For Connections.*"
+                }
+            }
+        },
     ]
 }
