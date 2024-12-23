@@ -102,13 +102,11 @@ class SignalComparator:
                     self.signals[signal_name][time] = value
 
     def get_value_at_time(self, signal_name, time):
-        """获取指定时间点的信号值"""
         # clean_name = self._clean_signal_name(signal_name)
         return self.signals[signal_name].get(time, None)
 
 @cocotb.test()
 async def test_stimuli_replay(dut):
-    """主测试函数"""
     # 获取CSV文件路径（从环境变量或使用默认值）
     csv_file = os.environ.get('CSV_FILE', 'input.csv')
     test_id = os.environ.get('TEST_ID', '0-0')
@@ -117,6 +115,7 @@ async def test_stimuli_replay(dut):
     id2 = test_id.split('-')[1]
     cmpcsv_file = os.environ.get('CMPCSV_FILE', None)
     reglist_file = os.environ.get('REGLIST_FILE', None)
+    PWD = os.environ.get('PWD', os.getcwd())
     # get reglist from reglist_file path
     if reglist_file:
         with open(reglist_file, 'r') as f:
@@ -126,7 +125,7 @@ async def test_stimuli_replay(dut):
 
 
     # 初始化信号重放器
-    replayer = SignalReplay(csv_file)
+    replayer = SignalReplay(os.path.join(PWD,csv_file))
     if cmpcsv_file!=None:
         comparator = SignalComparator(cmpcsv_file)
     else:
@@ -257,4 +256,4 @@ async def test_stimuli_replay(dut):
     # 打印最终的 
     if hasattr(dut, f'coverage{id1}'):
         cocotb.log.info(f"[RESULT] The cover result of coverage{id1}-{id2} is: {str(getattr(dut,f'coverage{id1}').value[1000-int(id2)])}")
-        # cocotb.log.info(f"[RESULT] The cover result of coverage{id1}-{id2} is: {str(getattr(dut,f'coverage{id1}').value)}")
+        cocotb.log.info(f"[RESULT] The full value of coverage{id1}-{id2} is: {str(getattr(dut,f'coverage{id1}').value)}")

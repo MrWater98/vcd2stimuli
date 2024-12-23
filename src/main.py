@@ -1,116 +1,41 @@
-import Verilog_VCD
+import os
 import argparse
-import sys
-import csv
-from collections import defaultdict
-
-
-def read_input_list(input_list_file):
-    """读取input列表文件"""
-    with open(input_list_file, 'r') as f:
-        return [line.strip() for line in f if line.strip()]
-
-def parse_vcd_signals(vcd_file, signal_list, is_all_signals=False):
-    """解析VCD文件中指定信号的值"""
-    vcd_data = Verilog_VCD.parse_vcd(vcd_file)
-    
-    # 获取时间刻度
-    timescale = Verilog_VCD.get_timescale()
-    endtime = Verilog_VCD.get_endtime()
-    
-    # 创建结果字典
-    results = {}
-    
-    # 处理每个信号
-    for code, data in vcd_data.items():
-        for net in data['nets']:
-            signal_name = f"{net['name']}"
-            if signal_name in signal_list or is_all_signals:
-                # 获取信号的时间-值对
-                if 'tv' in data:
-                    results[signal_name] = data['tv']
-    
-    return results, timescale, endtime
-
-def organize_by_cycle(results):
-    """将结果按周期组织"""
-    cycle_data = defaultdict(dict)
-    all_times = set()
-    
-    # 收集所有时间点
-    for signal_name, tv_pairs in results.items():
-        for time, value in tv_pairs:
-            all_times.add(time)
-    
-    # 按时间排序
-    sorted_times = sorted(all_times)
-    
-    # 对每个信号，找到每个时间点的值
-    for signal_name, tv_pairs in results.items():
-        current_value = 'x'  # 默认值
-        tv_index = 0
-        
-        for time in sorted_times:
-            # 更新当前值
-            while tv_index < len(tv_pairs) and tv_pairs[tv_index][0] <= time:
-                current_value = tv_pairs[tv_index][1]
-                tv_index += 1
-            
-            cycle_data[time][signal_name] = current_value
-    
-    return cycle_data, sorted_times
-
-def export_to_csv(cycle_data, sorted_times, signal_list, output_file):
-    """导出数据到CSV文件"""
-    # 获取所有信号名称
-    all_signals = set()
-    for time_data in cycle_data.values():
-        all_signals.update(time_data.keys())
-    all_signals = sorted(all_signals)  # 排序以保持一致的列顺序
-    
-    with open(output_file, 'w', newline='') as f:
-        writer = csv.writer(f)
-        
-        # 写入表头
-        header = ['Time'] + all_signals
-        writer.writerow(header)
-        
-        # 写入每个时间点的数据
-        for time in sorted_times:
-            row = [time]
-            for signal in all_signals:
-                row.append(cycle_data[time].get(signal, 'x'))
-            writer.writerow(row)
+from cocotb_test.simulator import run
 
 def main():
-    # 设置命令行参数
-    parser = argparse.ArgumentParser(description='Parse VCD file for specific inputs')
-    parser.add_argument('--vcd', required=True, help='Path to VCD file')
-    parser.add_argument('--inputs', required=True, help='Path to input list file')
-    parser.add_argument('--output', default='output.csv', help='Path to output CSV file')
-    
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--top', required=True, help='Top-level module name')
+    parser.add_argument('--clock', required=True, help='clock name')
+    parser.add_argument('--rtl', required=True, help='RTL file path')
+    parser.add_argument('--csv', required=True, help='Stimuli CSV file')
+    parser.add_argument('--id', required=True, help='Test ID: 0-0: coverage0[0]')
+    parser.add_argument('--cmpcsv', required=False, help='Comparison CSV file')
+    parser.add_argument('--reglist', required=False, help='Comparison reglist file')
     args = parser.parse_args()
-    
-    try:
-        # 读取输入列表
-        input_signals = read_input_list(args.inputs)
+
+    # 设置环境变量
+    os.environ['CSV_FILE'] = args.csv
+    os.environ['TEST_ID'] = args.id
+    os.environ['CLOCK'] = args.clock
+    os.environ['SIM'] = 'verilator'
+    if hasattr(args, 'cmpcsv') and args.cmpcsv:
+        os.environ['CMPCSV_FILE'] = args.cmpcsv
+    if hasattr(args, 'reglist') and args.reglist:
+        os.environ['REGLIST_FILE'] = args.reglist
         
-        # 解析VCD文件
-        results, timescale, endtime = parse_vcd_signals(args.vcd, input_signals, is_all_signals=False)
-        
-        # 按周期组织数据
-        cycle_data, sorted_times = organize_by_cycle(results)
-        
-        # 导出到CSV文件
-        export_to_csv(cycle_data, sorted_times, input_signals, args.output)
-        
-        print(f"Timescale: {timescale}")
-        print(f"End time: {endtime}")
-        print(f"Results have been exported to {args.output}")
-        
-    except Exception as e:
-        print(f"Error: {str(e)}", file=sys.stderr)
-        sys.exit(1)
+    # current directory
+    os.environ['PWD'] = os.getcwd()
+
+    # 运行测试
+    run(
+        verilog_sources=[args.rtl],
+        toplevel=args.top,
+        module='test_stimuli',
+        sim_build='sim_build',
+        work_dir='run',
+        compile_args=['-Wno-fatal'],
+        gui=False
+    )
 
 if __name__ == "__main__":
     main()
